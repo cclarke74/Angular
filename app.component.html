@@ -1,7 +1,7 @@
 
-// interpolation - display data
+<!----interpolation - display data--->
 <h1 [innerText]="title"></h1>
-// data binding- modify a property
+<!---data binding- modify a property--->
 <h1> {{ title }} </h1>
 
 <h1>Welcome, {{ firstName + ' ' + lastName}} </h1>
@@ -11,3 +11,19 @@
 
 <button [disabled]="isDisabled"> Submit</button>
 <button [disabled]="getIsDisabled()"> Submit</button>
+<br>
+<!---event binding, events use "on"----> <br>
+<button (click)="onSave()">Save</button>
+<br>
+
+{{ savedMessage }}
+<br>
+<!----2-way binding--->
+<br>
+<input type= "text" [(ngModel)]="message">
+{{message}}
+
+<p *ngIf="toggle">hello ngIf</p>
+<br>
+
+<button (click)="onToggle()">Toggle</button>
