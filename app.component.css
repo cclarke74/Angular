@@ -1,0 +1,20 @@
+table, th, td {
+    border: 1px solid black;
+}
+
+.text-border {
+    color: black;
+    border: 1px solid blue;
+    background: green;
+}
+
+.text-border-2 {
+    color: white;
+    border: 1px solid black;
+    background: red;
+}
+
+.parent{
+    color: black;
+    border: 4px solid green;
+}

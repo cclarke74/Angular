@@ -1,0 +1,13 @@
+
+// interpolation - display data
+<h1 [innerText]="title"></h1>
+// data binding- modify a property
+<h1> {{ title }} </h1>
+
+<h1>Welcome, {{ firstName + ' ' + lastName}} </h1>
+<h1>Welcome, {{ firstName }} {{lastName}} </h1>
+<h1>Welcome, {{ getName() }} </h1>
+
+
+<button [disabled]="isDisabled"> Submit</button>
+<button [disabled]="getIsDisabled()"> Submit</button>
