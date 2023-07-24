@@ -19,6 +19,7 @@ export class AppComponent {
     message: string = "";
 
     toggle: boolean= false;
+    show: string= "";
 
     constructor(){
       setTimeout(()=>{
@@ -41,5 +42,14 @@ export class AppComponent {
     onToggle(): void{
       this.toggle = !this.toggle;
     }
+
+    onShow(): void{
+      if (this.show == ""){
+        this.show = "something";
+      }
+      else {
+        this.show="";
+      }
     }
+  }
   
