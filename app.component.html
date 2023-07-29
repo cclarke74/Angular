@@ -21,10 +21,101 @@
 <!----2-way binding--->
 <br>
 <input type= "text" [(ngModel)]="message">
-{{message}}
+{{message}}<br>
 
-<p *ngIf="toggle">hello ngIf</p>
+<!---NgIf Directive template with elseBlock-->
+<button (click)="onToggle()">Toggle</button>
+<!---<p *ngIf="toggle; else elseBlock">Hello ngIf</p>
+    <ng-template #elseBlock>Hello ngIf - elseBlock</ng-template>--->
+
+    <!--ng elseBlock-->
+<p *ngIf="toggle">Hello ngIf</p>
+<p *ngIf="!toggle">Hello ngIf - elseBlock</p>
 <br>
 
 <button (click)="onShow()">Show</button>
 <p *ngIf="show == 'something'">hello ngIf - show</p>
+
+<p *ngIf="product" ngClass="SkinCare">
+    <label> Name: </label> {{product.name}}
+    <label> Quantity: </label> {{product.quantity}}
+    <label> ExpiryDate: </label> {{product.expiryDate}}
+</p>
+
+<!--ngFor is used for arrays and lists-->
+<h2>Product Details</h2>
+<table>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Quantity (in ml)</th>
+        <th>Expiry Date</th>
+        <th>Odd</th>
+    </tr>
+    <tr *ngFor="let product of products; index as i; odd as o">
+        <td>{{ i + 1 }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.quantity }}</td>
+        <!---using angular pipes for date-->
+        <td>{{ product.expiryDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{ o }}</td>
+    </tr>
+ </table>
+
+ <h2>NgSwitch</h2>
+ <div> There are {{ getLength() }} numbers.</div>
+ 
+ <div [ngSwitch]="getLength()">
+     <span *ngSwitchCase=0>No number is added</span>
+     <span *ngSwitchCase=1>One number is added</span>
+     <span *ngSwitchCase=2>Two number is added</span>
+     <span *ngSwitchCase=3>Three number is added</span>
+     <span *ngSwitchDefault>Number bigger than three</span>
+     
+ </div>
+ <button (click)="onAddElement()">Add Element</button>
+
+
+<h2>NgClass</h2>
+ <div [ngClass]="{'text-border': false}">
+    This text has no border
+ </div>
+ <div [ngClass]="{'text-border': true}">
+    This text has border
+ </div>
+
+ <h2>NgClass- Dynamic</h2>
+ <div>
+    <button (click)="onClick()">Status</button>
+    <div *ngFor="let t of temp; let i =index">
+        <span [ngClass]="{'text-border-2': i > 5}">( {{t}} )</span>
+    </div>
+ </div>
+
+ <h2>NgStyle</h2>
+ <div>
+    <div [ngStyle]="{'font-style': 'italic', 'color': 'white', 'background-color': 'blue'}">
+        Text style using ngStyle
+    </div>
+ </div>
+
+ <h2>NgStyle - Dynamic</h2>
+<div>
+    <h2 [ngStyle]="{'font-size.px': 30}">User Details</h2>
+    <table>
+        <tr>
+	      <th>Name</th>
+          <th>User Id</th>
+	      <th>M1</th>
+	      <th>M2</th>
+	      <th>M3</th>
+	    </tr>
+	    <tr *ngFor="let user of users">
+	      <td>{{ user.name }}</td>
+	      <td>{{ user.userId }}</td>
+ 	      <td [ngStyle]="{'color':getMarkColor(user.m1)}">({{ user.m1 }})</td>
+ 	      <td [ngStyle]="{'color':getMarkColor(user.m2)}">({{ user.m2 }})</td>
+ 	      <td [ngStyle]="{'color':getMarkColor(user.m3)}">({{ user.m3 }})</td>
+	    </tr>
+     </table>
+</div>
