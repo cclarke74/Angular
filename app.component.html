@@ -1,3 +1,9 @@
+<div class="parent">
+    <h1>Parent Component</h1>
+    <button (click)="sendMessage()">Send Parent Message</button>
+    <app-child [message]="messageParent" (childMessage)="receiveMessage($event)"></app-child>
+    <h2>Message Received by Parent: {{ messageChild }} </h2>
+</div>
 
 <!----interpolation - display data--->
 <h1 [innerText]="title"></h1>

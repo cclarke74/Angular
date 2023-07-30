@@ -33,6 +33,9 @@ export class AppComponent {
 
    temp: string[];
 
+   messageParent: string;
+   messageChild: string;
+
    constructor(){
       this.product = new Product("hand wash",200,new Date('2022-03-25'));
       //this.product = new Product("hand wash",200,new Date('2022-03-25'));
@@ -50,6 +53,8 @@ export class AppComponent {
         { name: 'Brij', userId: 27, m1:85, m2:90, m3:92 },
          ];
 
+      this.messageParent = "";
+      this.messageChild = "";
 
       setTimeout(()=>{
         this.isDisabled = false;
@@ -105,5 +110,13 @@ export class AppComponent {
     else{
       return 'red'; 
     }
+  }
+
+  sendMessage():void{
+    this.messageParent = "message from the Parent"
+  }
+
+  receiveMessage(message: string): void {
+    this.messageChild = message;
   }
 }
