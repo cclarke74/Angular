@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Product } from './product.model';
 import { User} from './user.model';
+import { ChildViewComponent } from './child-view/child-view.component';
 
+//Reference to the ChildViewComponent
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +11,11 @@ import { User} from './user.model';
 })
 //Controller
 export class AppComponent {
+
+    @ViewChild(ChildViewComponent)
+    childComponent = {} as ChildViewComponent;
+
+    
 //Model
   title: string = "Data Binding Examples";
   firstName: string = "Jack";
@@ -118,5 +125,13 @@ export class AppComponent {
 
   receiveMessage(message: string): void {
     this.messageChild = message;
+  }
+
+  increase(): void{
+    this.childComponent.increaseByOne();
+  }
+
+  decrease(): void{
+    this.childComponent.decreaseByOne();
   }
 }
