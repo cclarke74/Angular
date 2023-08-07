@@ -10,8 +10,8 @@
 <!---data binding- modify a property--->
 <h1> {{ title }} </h1>
 
+<h1>Welcome, {{ firstName | uppercase }} {{lastName}} </h1>
 <h1>Welcome, {{ firstName + ' ' + lastName}} </h1>
-<h1>Welcome, {{ firstName }} {{lastName}} </h1>
 <h1>Welcome, {{ getName() }} </h1>
 
 
@@ -44,7 +44,7 @@
 
 <p *ngIf="product" ngClass="SkinCare">
     <label> Name: </label> {{product.name}}
-    <label> Quantity: </label> {{product.quantity}}
+    <label> Quantity: </label> {{product.quantity }}
     <label> ExpiryDate: </label> {{product.expiryDate}}
 </p>
 

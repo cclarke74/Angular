@@ -1,19 +1,31 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from './product.model';
 import { User} from './user.model';
 import { ChildViewComponent } from './child-view/child-view.component';
+import { Observable, Observer, Subscription } from 'rxjs';
 
-//Reference to the ChildViewComponent
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 //Controller
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-    @ViewChild(ChildViewComponent)
-    childComponent = {} as ChildViewComponent;
+observable = new Observable((observer) => {
+    console.log("Observable starts")
+    observer.next("5")
+    observer.next("4")
+    observer.next("3")
+    observer.next("2")
+    observer.next("1")
+})
+
+
+
+//Reference to the ChildViewComponent
+@ViewChild(ChildViewComponent)
+childComponent = {} as ChildViewComponent;
 
     
 //Model
@@ -42,6 +54,7 @@ export class AppComponent {
 
    messageParent: string;
    messageChild: string;
+  Observable: any;
 
    constructor(){
       this.product = new Product("hand wash",200,new Date('2022-03-25'));
@@ -66,6 +79,14 @@ export class AppComponent {
       setTimeout(()=>{
         this.isDisabled = false;
       },2000);
+    }
+
+   ngOnInit() {
+      this.observable = this.Observable.subscribe(
+        (         value: string) => {console.log("Hello:" + value) }, //next callback
+         () => { console.log("error") }, //error callback
+         ()=> { console.log("completed") } //complete callback
+      )
     }
 
     getName(): string{
@@ -134,4 +155,6 @@ export class AppComponent {
   decrease(): void{
     this.childComponent.decreaseByOne();
   }
+
+
 }
